@@ -1,0 +1,179 @@
+// Soccer league            start date: 4/9/17         end date: 1st sub: 4/17/17   2nd sub:
+
+// dictionaries to store player information
+
+
+let playerOne: [String : String] = [
+    "name": "Joe Smith", "height": "42",
+    "EXP" : "true", "guardians": "Jim and Jan Smith"]
+
+let playerTwo: [String : String] = [
+    "name": "Jill Tanner", "height": "36",
+    "EXP": "true", "guardians": "Clara Tanner"]
+
+let playerThree : [String : String] = [
+    "name": "Bill Bon", "height": "43",
+    "EXP": "true", "guardians": "Sara and Jenny Bon"]
+
+let playerFour : [String : String] = [
+    "name": "Eva Gordon", "height": "45",
+    "EXP": "false", "guardians": "Wendy and Mike Gordon"]
+
+let playerFive : [String : String] = [
+    "name": "Matt Gill", "height": "40",
+    "EXP": "true", "guardians": "Charles and Sylvia Gill "]
+
+let playerSix : [String : String] = [
+    "name": "Kimmy Stein", "height": "41",
+    "EXP": "false", "guardians": "Bill and Hillary Stein"]
+
+let playerSeven : [String : String] = [
+    "name": "Sammy Adams", "height": "45",
+    "EXP": "false", "guardians": "Jeff Adams"]
+
+let playerEight : [String : String] = [
+    "name": "Karl Saygan", "height": "42",
+    "EXP": "true", "guardians": "Heather Bledsoe"]
+
+let playerNine : [String : String] = [
+    "name": "Suzane Greenberg", "height": "44",
+    "EXP": "true", "guardians": "Henrietta Dumas"]
+
+let playerTen : [String : String] = [
+    "name": "Sal Dali", "height": "41",
+    "EXP": "false", "guardians": "Gala Dali"]
+
+let playerEleven : [String : String] = [
+    "name": "Joe Kavalier", "height": "39",
+    "EXP": "false", "guardians": "Sam amd Elaine Kavalier"]
+
+let playerTwelve : [String : String] = [
+    "name": "Ben Finkelstein", "height": "44",
+    "EXP": "false", "guardians": "Aaron and Jill Finkelstein"]
+
+let playerThirteen : [String : String] = [
+    "name": "Diego Soto", "height": "41",
+    "EXP": "true", "guardians": "Robin and Sarika Soto"]
+
+let playerFourteen : [String : String] = [
+    "name": "Chloe Alaska", "height": "47",
+    "EXP": "false", "guardians": "David and Jamie Alaska"]
+
+let playerFifteen : [String : String] = [
+    "name": "Arnold Willis", "height": "43",
+    "EXP": "false", "guardians": "Claire Willis"]
+
+let playerSixteen : [String : String] = [
+    "name": "Phillip Helm", "height": "44",
+    "EXP": "true", "guardians": "Thomas Helm and Eva Jones"]
+
+let playerSeventeen : [String : String] = [
+    "name": "Les Clay", "height": "42",
+    "EXP": "true", "guardians": "Wynonna Brown"]
+
+let playerEighteen : [String : String] = [
+    "name": "Herschel Krustofski", "height": "45",
+    "EXP": "true", "guardians": "Hyman and Rachel Krustofski"]
+
+
+// an array of dictionaries called players to store the player dictionaries
+
+var players: [[String: String]] = [playerOne, playerTwo, playerThree, playerFour, playerFive, playerSix, playerSeven, playerEight, playerNine, playerTen, playerEleven, playerTwelve, playerThirteen, playerFourteen, playerFifteen, playerSixteen, playerSeventeen, playerEighteen]
+
+
+// creating an empty Dictionary to strore the roster of each team
+
+var teamSharks = [[String : String]]()
+var teamDragons = [[String : String]]()
+var teamRaptors = [[String: String]]()
+
+// two empty dictionaries to store a list of players who do and who dont have experience
+
+var hasExperience = [[String :String]]()
+var noExperience =  [[String: String]]()
+
+
+// assiging players to teams
+
+    for player in players {
+        for (key, value) in player {
+        switch value {
+         case  "true":
+            hasExperience.append(player)
+        case  "false":
+            noExperience.append(player)
+        default: break                      // used to print out a default string but now will break instead
+            }
+        }
+    }
+
+// divide players into teams    // divide players evenly into the amount of teams
+// 18 players, 10 with experience, 3 players with experience on each team of 6
+
+//      Sort unexp. and exp. players into teams evenly
+
+var sorter = 0
+for (var player) in noExperience {
+        sorter += 1
+        var remainder = sorter % 3
+        switch remainder {
+        case 1: teamSharks.append(player)
+            player["team"] = "Sharks"
+            player["practice"] = "March 17, at 3 pm"
+        case 2: teamRaptors.append(player)
+            player["team"] = "Raptors"
+            player["practice"] = "March 18, at 1 pm"
+        case 0: teamDragons.append(player)
+            player["team"] = "Dragons"
+            player["practice"] = "March 17th, at 1 pm"
+        default: print("There are no players in this dictionary")
+        }
+    }
+
+
+var sorterTwo = 0
+for (var player) in hasExperience {
+            sorterTwo += 1
+        var remainder = sorterTwo % 3
+        switch remainder {
+        case 1: teamDragons.append(player)
+        player["team"] = "Dragons"
+        player["practice"] = "March 17th, at 1 pm"
+        case 2: teamRaptors.append(player)
+        player["team"] = "Raptors"
+        player["practice"] = "March 18, at 1 pm"
+        case 0: teamSharks.append(player)
+        player["team"] = "Sharks"
+        player["practice"] = "March 17, at 3 pm"
+        default: print("There are no players in this dictionary")
+        }
+    }
+
+
+// letter to parents
+
+var letters: [String] = []
+
+for player in teamDragons {
+    let dragonLetter: String = "\("Dear \(player["guardians"]!), your child has been selected to play for the Dragons! Please have \(player["name"]!) ready for practice on March 17th, at 1 pm.")"
+    letters.append(dragonLetter)
+}
+
+for player in teamSharks {
+    let sharksLetter: String = "\("Dear \(player["guardians"]!), your child has been selected to play for the Sharks! Please have \(player["name"]!) ready for practice on March 17th, at 3 pm.")"
+    letters.append(sharksLetter)
+
+}
+
+for player in teamRaptors {
+    let raptorsLetter = "\("Dear \(player["guardians"]!), your child has been selected to play for the Raptors! Please have \(player["name"]!) ready for practice on March 17th, at 3 pm.")"
+    letters.append(raptorsLetter)
+}
+
+// printing letters   -  changed from:    print(letters)
+
+var letterCounter : String = ""
+for letter in letters {
+    letterCounter += "\(letter)"
+}
+print(letterCounter)
